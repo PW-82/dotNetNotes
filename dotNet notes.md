@@ -82,9 +82,16 @@ Non-derived class (different assembly)      ✔️          ❌                 
 
 ### Stałe
 
-Const vs Readonly
-const musi być podana wprost, jest niezmienna i musi być znana w trakcie kompilacji - dobra praktyka nakazuje używanie readonly
-readonly może być wyliczane i jest podstawiane w runtime, nie podczas kompilacji.
+<code>Const vs Readonly</code>
+```C#
+const
+``` 
+musi być podana wprost, jest niezmienna i musi być znana w trakcie kompilacji - dobra praktyka nakazuje używanie readonly
+```C#
+readonly
+```
+może być wyliczane i jest podstawiane w runtime, nie podczas kompilacji.
 
 <code>_</code> podkreślenie używane jest jako wildcard np w instrukcji <code>swich</code> podobnie <code>default</code> w java, albo w string jako dowolny nieokreślony znak.
+//TODO ciąg dalszy nastąpi
 
