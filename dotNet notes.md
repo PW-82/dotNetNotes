@@ -1,5 +1,11 @@
 Notatki programisty .net
 
+### Utowrzenie projektu konsolowego z terminala
+```console
+dotnet new console -n tuples --target-framework-override net7 --use-program-main
+```
+Powyższe polecenie tworzy projekt konsolowy w wersji .net7
+
 ### Liczby i operacje
 
 Wartości liczbowe (nie wszystkie, tylko najpopularniejsze w użyciu):
@@ -94,4 +100,25 @@ może być wyliczane i jest podstawiane w runtime, nie podczas kompilacji.
 
 <code>_</code> podkreślenie używane jest jako wildcard np w instrukcji <code>swich</code> podobnie <code>default</code> w java, albo w string jako dowolny nieokreślony znak.
 //TODO ciąg dalszy nastąpi
+
+### Krotki (tuples)
+```C#
+namespace tuples;
+public class exampleClass
+{
+  public (string, int) tuple1()
+  {
+    return ("Something", 3);
+  }
+  public (int, int) tuple2 = (1,2);
+}
+```
+
+użycie :
+
+```C#
+exampleClass example = new();
+Console.WriteLine(example.tuple1().Item1);
+Console.WriteLine(example.tuple2.Item1);
+```
 
