@@ -2,7 +2,7 @@ Notatki programisty .net
 
 ### Utowrzenie projektu konsolowego z terminala
 ```console
-dotnet new console -n tuples --target-framework-override net7 --use-program-main
+dotnet new console -n <project name> --target-framework-override net7 --use-program-main
 ```
 Powyższe polecenie tworzy projekt konsolowy w wersji .net7
 
