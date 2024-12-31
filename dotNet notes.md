@@ -102,6 +102,7 @@ może być wyliczane i jest podstawiane w runtime, nie podczas kompilacji.
 //TODO ciąg dalszy nastąpi
 
 ### Krotki (tuples)
+
 ```C#
 namespace tuples;
 public class exampleClass
@@ -121,4 +122,20 @@ exampleClass example = new();
 Console.WriteLine(example.tuple1().Item1);
 Console.WriteLine(example.tuple2.Item1);
 ```
+Dekonstrukcja krotki :
+```C#
+(string exampleString, int exampleInt) = class.MethodReturnsStringAndInt();
+```
 
+Dekonstrukaja typów :
+
+```C#
+public void Deconstruct(out string fname, out string lname)
+{
+    fname = FirstName; //fname zmiennna deklarowana globalnie w klasie
+    lname = LastName;  //lname zmiennna deklarowana globalnie w klasie
+}
+
+var p = new Person("John", "Quincy", "Adams", "Boston", "MA"); //konstrukcja obiektu prze konstruktor
+var (fName, lName, city, state) = p; //dekonstruktor wywołanie automatyczne po typach zadeklarowanych i ustawienie zmiennych przez "out"
+```
