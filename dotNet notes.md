@@ -1,8 +1,12 @@
 Notatki programisty .net
+### Ogólne
 
-### Utowrzenie projektu konsolowego z terminala
+Sposób zapisu kodu znajduje się w tej konwencji
+https://learn.microsoft.com/en-us/dotnet/standard/design-guidelines/capitalization-conventions
+
+### Utworzenie projektu konsolowego z terminalu
 ```console
-dotnet new console -n <project name> --target-framework-override net7 --use-program-main
+dotnet new console -n tuples --target-framework-override net7 --use-program-main
 ```
 Powyższe polecenie tworzy projekt konsolowy w wersji .net7
 
@@ -138,4 +142,34 @@ public void Deconstruct(out string fname, out string lname)
 
 var p = new Person("John", "Quincy", "Adams", "Boston", "MA"); //konstrukcja obiektu prze konstruktor
 var (fName, lName, city, state) = p; //dekonstruktor wywołanie automatyczne po typach zadeklarowanych i ustawienie zmiennych przez "out"
+```
+
+### Przekazywanie parametrów do metod
+
+out - deklarujemy w metodzie. Jest paramtetrem wyjściowym, służy do zwracania wartości z metody <br>
+ref - parametr wejściowo/wyjściowy. Dokonujemy zmiany poprzez referencje (NIE KOPIE). Wiec zmianie ulega zarówno warotść w metodzie jak i zmienna globalna
+
+```C#
+int a = 1;
+int b = 1;
+int c = 1;
+Console.WriteLine($"Before: a = {a}, b = {b}, c = {c}");
+// tu może być użyta zmienna "out c" z jednocześnie zadeklarowaną zmienną globalną c. Po ykonaniu kodu c zostanie nadpisana nowym wynikiem
+PassParams(a, ref b, out c);
+Console.WriteLine($"After: a = {a}, b = {b}, c = {c}");
+// w tym przypadku "out int c", nie może być deklarowanej zmiennej globalnej c ponieważ jest deklarowana podczas przekazywania do metody !
+PassParams(a, ref b, out int c);
+public void PassParams(int x, ref int y, out int z)
+{
+  z = 11; // out musi być zadeklarowana w metodzie
+  x++;
+  y++;
+  z++;
+}
+
+```
+
+Partial - podziaał klasy na kilka plików
+```C#
+public partial class ExampleClass
 ```
