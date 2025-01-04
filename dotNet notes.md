@@ -173,3 +173,72 @@ Partial - podziaał klasy na kilka plików
 ```C#
 public partial class ExampleClass
 ```
+
+### Elementy członkowskie wyrażeń (expression-bodied member)
+
+```C#
+public int Add(int x, int y)
+{
+    return x + y;
+}
+```
+można zapisać jako
+```C#
+public int Add(int x, int y) => x + y;
+```
+
+Inicjacja pola
+```C#
+public int Age => DateTime.Now.Year - BirthYear;
+```
+znak równości "=" zamiast "=>" powyżej, nie zadziała bo jest to wyliczenia przed inicjają wartości
+<br>
+Konstruktor:
+```C#
+public Person(string name) => Name = name;
+```
+
+### Przeciążanie operatorów
+
+```C#
+public class Complex
+{
+    public double Real { get; }
+    public double Imaginary { get; }
+
+    public Complex(double real, double imaginary)
+    {
+        Real = real;
+        Imaginary = imaginary;
+    }
+
+    // Przeciążenie operatora +
+    public static Complex operator +(Complex c1, Complex c2)
+    {
+        return new Complex(c1.Real + c2.Real, c1.Imaginary + c2.Imaginary);
+    }
+}
+```
+
+```C#
+Complex c1 = new Complex(1.1, 4.3);
+Complex c2 = new Complex(2.0, 3.2);
+Complex sum = c1 + c2; // Wynik to liczba zespolona (3.1, 7.5)
+```
+
+### Metody lokalne
+Metoda może posiadać w swoim ciele metodę lokalna (zagnieżdżoną), dostępną tylko ze środka metody rodzica.
+
+### Obiekty immutable
+```C#
+public class Osoba 
+{
+public string? Imie {get; init;}
+}
+
+Osoba ktos = new()
+{
+   Imie = "Pankracy";
+}
+ktos.imie = "nowe imie"; // nie przejdzie bo jest init czyli tylko inicjalizacja, bez możliwości zmiany
+```
