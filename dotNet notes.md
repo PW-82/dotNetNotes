@@ -6,7 +6,7 @@ https://learn.microsoft.com/en-us/dotnet/standard/design-guidelines/capitalizati
 
 ### Utworzenie projektu konsolowego z terminalu
 ```console
-dotnet new console -n tuples --target-framework-override net7 --use-program-main
+dotnet new console -n <nazwa projektu> --target-framework-override net7 --use-program-main
 ```
 Powyższe polecenie tworzy projekt konsolowy w wersji .net7
 
@@ -55,9 +55,77 @@ checked
 
 ### Polimorfizm i dziedziczenie :
 
-przesłanianie intencjonalne metod dodajemy słówko <code>new</code> //TODO dokończyć
-<br>
-do dokończenia (...)
+Aby móc korzystać z polimorfizmu, należy metodę bazową oznaczyć jako <code>virtual</code> lub
+<code>abstract</code>. Abstract działa podobnie jak w javie.
+Metody oznaczone jako <code>virtual</code> mogą być używane jako normalne metody, nie są abstrakcyjne.
+Jeżeli chcemy skorzystać z polimorfizmu, przesłaniamy je przez metody oznaczone jako <code>override</code>
+
+```C#
+public class BaseClass
+{
+    public virtual void DisplayMessage()
+    {
+        Console.WriteLine("Message from BaseClass");
+    }
+}
+
+public class DerivedClass : BaseClass
+{
+    public override void DisplayMessage()
+    {
+        Console.WriteLine("Message from DerivedClass");
+    }
+}
+
+public class Program
+{
+    public static void Main(string[] args)
+    {
+        BaseClass obj1 = new BaseClass();
+        obj1.DisplayMessage(); // Wywoła "Message from BaseClass"
+
+        DerivedClass obj2 = new DerivedClass();
+        obj2.DisplayMessage(); // Wywoła "Message from DerivedClass"
+    }
+}
+```
+
+przesłanianie za pomocą <code>new</code>
+
+```C#
+using System;
+
+public class BaseClass
+{
+    public void DisplayMessage()
+    {
+        Console.WriteLine("Message from BaseClass");
+    }
+}
+
+public class DerivedClass : BaseClass
+{
+    public new void DisplayMessage()
+    {
+        Console.WriteLine("Message from DerivedClass");
+    }
+}
+
+public class Program
+{
+    public static void Main(string[] args)
+    {
+        BaseClass baseObj = new BaseClass();
+        baseObj.DisplayMessage(); // Wywoła "Message from BaseClass"
+
+        DerivedClass derivedObj = new DerivedClass();
+        derivedObj.DisplayMessage(); // Wywoła "Message from DerivedClass"
+
+        BaseClass baseDerivedObj = new DerivedClass();
+        baseDerivedObj.DisplayMessage(); // Wywoła "Message from BaseClass"
+    }
+}
+```
 
 ### Dostęp i modyfikatory dostępu:
 
