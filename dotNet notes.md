@@ -310,3 +310,29 @@ Osoba ktos = new()
 }
 ktos.imie = "nowe imie"; // nie przejdzie bo jest init czyli tylko inicjalizacja, bez możliwości zmiany
 ```
+
+
+
+### ASP.NET
+Poniżej definicja prostego kontrolera.
+<code>[Route("[controller]")]</code> oznacza, że ścieżką do kontrolera będzie "/Some" z "SomeController". 
+Część "Controller" jest wycinana.
+
+```C#
+    [ApiController]
+    [Route("[controller]")]
+    public class SomeController : ControllerBase
+    {
+        [HttpGet("firstMessage")]
+        public IActionResult GetFirstMessage()
+        {
+            return Ok("Hello, World 2 !");
+        }
+
+        [HttpGet("secondMessage")]
+        public IActionResult GetSecondMessage()
+        {
+            return Ok("Hello, World !");
+        }
+    }
+```
